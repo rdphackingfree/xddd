@@ -9,20 +9,20 @@ jobs:
     timeout-minutes: 9999
 
     steps:
-    - name: Creating Ngrok.
+    - name: Preparing Ngrok.
       run: |
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/start.bat -OutFile start.bat
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/wallpaper.jpg -OutFile wallpaper.png
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/wallpaper.bat -OutFile wallpaper.bat
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/loop.bat -OutFile loop.bat
-    - name: Creating launcher.
+    - name: Preparing launcher.
       run: |
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/launcher/Node.js.lnk -OutFile Node.js.lnk
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/launcher/Visual%20Studio%202019.lnk -OutFile "Visual Studio 2019.lnk"
     - name: Extracting Ngrok file.
       run: Expand-Archive ngrok.zip
-    - name: Connect To Ngrok Account.
+    - name: Connecting to Ngrok account.
       run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
