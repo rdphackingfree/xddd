@@ -24,6 +24,8 @@ REG ADD "HKLU\Control Panel\Desktop" /v DragFullWindows /t REG_SZ /d 1 /f
 REG ADD "HKLU\Control Panel\Desktop" /v FontSmoothing /t REG_SZ /d 2 /f
 REG ADD "HKLU\Control Panel\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ListviewShadow /t REG_SZ /d 0 /f
 REG ADD "HKLU\Control Panel\Desktop\WindowMetrics" /v MinAnimate /t REG_SZ /d 1 /f
+powershell -Command "& {Invoke-WebRequest https://drive.google.com/uc?id=1E7vYf_b-uaJnlLQwv3ZyPe21u5z-CwVZ -OutFile wallpaper.zip; Expand-Archive wallpaper.zip; Remove-Item wallpaper.zip}"
+@D:\a\wallpaper\wallpaper.exe D:\a\wallpaper\wallpaper.bgi /timer:0
 cls
 echo Personalization complete
 timeout /t 1
