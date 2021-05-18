@@ -10,7 +10,7 @@ exit /B
 if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
 pushd "%CD%"
 CD /D "%~dp0"
-REG ADD "HKCU\Control Panel\Desktop" /v WallPaper /f /t REG_SZ /d D:\a\wallpaper.png
+REG ADD "HKCU\Control Panel\Desktop" /v WallPaper /f /t REG_SZ /d C:\Windows\wallpaper.png
 REG ADD HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName /v ComputerName /t REG_SZ /d WindowsRDP /f
 REG ADD HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName\ /v ComputerName /t REG_SZ /d WindowsRDP /f
 REG ADD HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\ /v Hostname /t REG_SZ /d WindowsRDP /f
