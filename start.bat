@@ -15,7 +15,6 @@ sc start audiosrv >nul
 ICACLS C:\Windows\Temp /grant %username%:F >nul
 ICACLS C:\Windows\installer /grant %username%:F >nul
 echo If the RDP dead, please rerun workflow.
-C:\personalization.bat
  
 echo|set /p="IP: "
 tasklist | find /i "ngrok.exe" >Nul && curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url || echo "Unable to get NGROK tunnel, make sure NGROK_AUTH_TOKEN is correct in Settings > Secrets > Repository secret. Maybe your previous RDP is still running: https://dashboard.ngrok.com/status/tunnels "
