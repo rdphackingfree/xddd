@@ -12,6 +12,7 @@ exit /B
 if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
 pushd "%CD%"
 CD /D "%~dp0"
+REG ADD "HKCU\Control Panel\Desktop" /v Wallpaper /f /t REG_SZ /d D:\a\wallpaper.png
 REG ADD HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName /v ComputerName /t REG_SZ /d AdityaRDP /f
 REG ADD HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName\ /v ComputerName /t REG_SZ /d AdityaRDP /f
 REG ADD HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\ /v Hostname /t REG_SZ /d AdityaRDP /f
@@ -21,7 +22,6 @@ REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v Model /
 REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v SupportURL /t REG_SZ /d "https://github.com/Metehanse/WindowsRDP/issues" /f
 REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarSmallIcons /t REG_DWORD /d 1 /f
 powershell -Command "& {Invoke-WebRequest https://drive.google.com/u/0/uc?id=1lLAAItvJDwREs_Kk0VKvK7l13HH3wBOX -OutFile wallpaper.zip; Expand-Archive wallpaper.zip; Remove-Item wallpaper.zip}"
-@D:\a\wallpaper\wallpaper.exe D:\a\wallpaper\wallpaper.bgi /timer:0
 @RD /S /Q wallpaper
 RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
 taskkill /f /im explorer.exe
