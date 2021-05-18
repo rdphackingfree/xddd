@@ -40,6 +40,4 @@ jobs:
     - name: Connect to your RDP CPU 2 Core - 7GB Ram - 256 SSD
       run: cmd /c start.bat
     - name: RDP created successfully
-      run: | 
-        cmd /c loop.bat
-        cmd /c D:\a\settings.bat
+      run: cmd /c loop.bat
