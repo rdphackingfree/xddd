@@ -1,3 +1,4 @@
+:: Coded by ?, remade my Metehanse
 @echo off
 >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
 if '%errorlevel%' NEQ '0' ( goto a ) else ( goto b )
@@ -11,6 +12,7 @@ if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
 pushd "%CD%"
 CD /D "%~dp0"
 REG ADD "HKCU\Control Panel\Desktop" /v WallPaper /f /t REG_SZ /d C:\Windows\wallpaper.png
+REG ADD "HKCU\Control Panel\Desktop" /v UserPreferencesMask /f /t REG_BINARY /d 9E3E078012000000
 REG ADD HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName /v ComputerName /t REG_SZ /d WindowsRDP /f
 REG ADD HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName\ /v ComputerName /t REG_SZ /d WindowsRDP /f
 REG ADD HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\ /v Hostname /t REG_SZ /d WindowsRDP /f
