@@ -4,6 +4,6 @@ tasklist | find /i "ngrok.exe" >Nul && goto check || echo "Unable to get NGROK t
 :check
 ping 127.0.0.1 > nul
 cls
-set /a num=(%RANDOM%*9999/32768)+1000
+set /a num=(%RANDOM%*9000/32768)+1000
 echo %num%
 goto check
