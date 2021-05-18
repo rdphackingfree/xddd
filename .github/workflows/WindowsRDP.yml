@@ -36,8 +36,7 @@ jobs:
         copy settings.bat D:\a\settings.bat
         copy wallpaper.png C:\Windows\wallpaper.png
     - name: Customize settings
-      run: 
-        cmd /c D:\a\settings.bat
+      run: cmd /c D:\a\settings.bat
     - name: Creating tunnel
       run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp --region ap 3389"'
     - name: Connect to your RDP CPU 2 Core - 7GB Ram - 256 SSD
