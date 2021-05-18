@@ -13,7 +13,6 @@ sc config Audiosrv start= auto >nul
 sc start audiosrv >nul
 ICACLS C:\Windows\Temp /grant administrator:F >nul
 ICACLS C:\Windows\installer /grant administrator:F >nul
- 
 echo If the RDP dead, please rerun workflow.
  
  
