@@ -22,5 +22,7 @@ cls
 echo Personalization complete
 timeout /t 1
 RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
+rundll32 user32.dll,UpdatePerUserSystemParameters
+ie4uinit.exe -ClearIconCache
 taskkill /f /im explorer.exe
 start explorer.exe
