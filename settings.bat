@@ -18,7 +18,6 @@ REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v Manufac
 REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v Model /t REG_SZ /d "AdHost Virtual Machine" /f
 REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v SupportURL /t REG_SZ /d "https://github.com/Metehanse/WindowsRDP/issues" /f
 REG ADD HKLU\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects /v VisualFXSetting /t REG_DWORD /d 2 /f
-
 REG ADD HKLU\Control Panel\Desktop\WindowMetrics /v MinAnimate /t REG_SZ /d 0 /f
 REG ADD HKLU\Control Panel\Desktop /v DragFullWindows /t REG_SZ /d 1 /f
 REG ADD HKLU\Control Panel\Desktop /v FontSmoothing /t REG_SZ /d 2 /f
