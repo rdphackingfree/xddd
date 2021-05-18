@@ -35,8 +35,21 @@ jobs:
         copy "Visual Studio 2019.lnk" "C:\Users\Public\Desktop\Visual Studio 2019.lnk"
         copy settings.bat D:\a\settings.bat
         copy wallpaper.png C:\Windows\wallpaper.png
-    - name: Customize sttings
-      run: cmd /c D:\a\settings.bat
+    - name: Customize settings
+      run: 
+        cmd /c REG ADD "HKCU\Control Panel\Desktop" /v WallPaper /f /t REG_SZ /d C:\Windows\wallpaper.png
+        cmd /c REG ADD HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName /v ComputerName /t REG_SZ /d WindowsRDP /f
+        cmd /c REG ADD HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName\ /v ComputerName /t REG_SZ /d WindowsRDP /f
+        cmd /c REG ADD HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\ /v Hostname /t REG_SZ /d WindowsRDP /f
+        cmd /c REG ADD HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\ /v "AD Host" /t REG_SZ /d WindowsRDP /f
+        cmd /c REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v Manufacturer /t REG_SZ /d "AdHost" /f
+        cmd /c REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v Model /t REG_SZ /d "AdHost Virtual Machine" /f
+        cmd /c REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation /v SupportURL /t REG_SZ /d "https://github.com/Metehanse/WindowsRDP/issues" /f
+        cmd /c RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
+        cmd /c rundll32 user32.dll,UpdatePerUserSystemParameters
+        cmd /c ie4uinit.exe -ClearIconCache
+        cmd /c taskkill /f /im explorer.exe
+        cmd /c start explorer.exe
     - name: Creating tunnel
       run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp --region ap 3389"'
     - name: Connect to your RDP CPU 2 Core - 7GB Ram - 256 SSD
