@@ -9,24 +9,24 @@ jobs:
     timeout-minutes: 99999999
 
     steps:
-    - name: Preparing Ngrok.
+    - name: Preparing Ngrok
       run: |
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/start.bat -OutFile start.bat
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/wallpaper.jpg -OutFile wallpaper.png
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/personalization.bat -OutFile personalization.bat
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/loop.bat -OutFile loop.bat
-    - name: Preparing launcher.
+    - name: Preparing launcher
       run: |
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/launcher/Node.js.lnk -OutFile Node.js.lnk
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/launcher/Visual%20Studio%202019.lnk -OutFile "Visual Studio 2019.lnk"
-    - name: Extracting Ngrok file.
+    - name: Extracting Ngrok file
       run: Expand-Archive ngrok.zip
     - name: Connecting to Ngrok account.
       run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-    - name: Enabling RDP access.
+    - name: Enabling RDP access
       run: | 
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
         Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
@@ -36,9 +36,9 @@ jobs:
         copy Node.js.lnk C:\Users\Public\Desktop\Node.js.lnk
         copy "Visual Studio 2019.lnk" "C:\Users\Public\Desktop\Visual Studio 2019.lnk"
         cmd /c D:\a\personalization.bat
-    - name: Creating tunnel.
+    - name: Creating tunnel
       run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp --region ap 3389"'
-    - name: Connect to your RDP CPU 2 Core - 7GB Ram - 256 SSD.
+    - name: Connect to your RDP CPU 2 Core - 7GB Ram - 256 SSD
       run: cmd /c start.bat
-    - name: RDP created successfully.
+    - name: RDP created successfully
       run: cmd /c loop.bat
