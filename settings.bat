@@ -30,8 +30,7 @@ REG ADD HKLU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes /v AppsUseLightThe
 cls
 echo Personalization complete
 timeout /t 1
-RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
-rundll32 user32.dll,UpdatePerUserSystemParameters
+rundll32.exe user32.dll,UpdatePerUserSystemParameters 1, True
 ie4uinit.exe -ClearIconCache
 taskkill /f /im explorer.exe
 start explorer.exe
