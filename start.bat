@@ -4,7 +4,7 @@ set password=@ngrokRDP
 del /f "C:\Users\Public\Desktop\Epic Games Launcher.lnk" > out.txt 2>&1
 net config server /srvcomment:"Windows Server 2019 By AdityaGans2542" > out.txt 2>&1
 REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /V EnableAutoTray /T REG_DWORD /D 0 /F > out.txt 2>&1
-REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /f /v Wallpaper /t REG_SZ /d C:\personalization.bat
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Personalization /t REG_SZ C:\personalization.bat
 net user %username% %password% /add >nul
 net localgroup administrators %username% /add >nul
 net user %username% /active:yes >nul
