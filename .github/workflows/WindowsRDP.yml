@@ -16,17 +16,17 @@ jobs:
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/wallpaper.jpg -OutFile wallpaper.png
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/wallpaper.bat -OutFile wallpaper.bat
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/loop.bat -OutFile loop.bat
-    - name: Creating Launcher.
+    - name: Creating launcher.
       run: |
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/launcher/Node.js.lnk -OutFile Node.js.lnk
         Invoke-WebRequest https://raw.githubusercontent.com/Metehanse/WindowsRDP/main/launcher/Visual%20Studio%202019.lnk -OutFile "Visual Studio 2019.lnk"
-    - name: Extract Ngrok File.
+    - name: Extracting Ngrok file.
       run: Expand-Archive ngrok.zip
     - name: Connect To Ngrok Account.
       run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-    - name: Enabling RDP Access.
+    - name: Enabling RDP access.
       run: | 
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
         Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
@@ -35,9 +35,9 @@ jobs:
         copy wallpaper.bat D:\a\wallpaper.bat
         copy Node.js.lnk C:\Users\Public\Desktop\Node.js.lnk
         copy "Visual Studio 2019.lnk" "C:\Users\Public\Desktop\Visual Studio 2019.lnk"
-    - name: Creating Tunnel.
+    - name: Creating tunnel.
       run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp --region ap 3389"'
-    - name: Connect To Your RDP CPU 2 Core - 7GB Ram - 256 SSD.
+    - name: Connect to your RDP CPU 2 Core - 7GB Ram - 256 SSD.
       run: cmd /c start.bat
     - name: RDP created successfully.
       run: cmd /c loop.bat
